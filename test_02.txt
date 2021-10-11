@@ -1,0 +1,50 @@
+p t 0 0 1.5 0 0 1.199 
+p t 0 2.41 0 0 0 -2.3415
+p t -2.5314 -2.1234 0 0 1.1234 0
+p o  0 0  0 0  0 0  0 0  0 0  0 0  0 0  0 0
+p o  1 1  -2 2  4.1243 3  5 8.54  9 0.53  -5 5  4 4  -3 1
+p o  1 2  -4.25 5  0 -9.25 -5 5  4 4  5 1 -9.25 1  0 -5
+p s  1 1  1 2  -2.01 2  -2 2
+p s  3 3  4 -4.12  1 -1 -1 1
+p s  4 4  3 -3 -4.14 -3  8 -5
+
+coor 0
+coor 1
+coor 2
+coor 3
+coor 4
+coor 5
+coor 6
+coor 7
+coor 8
+
+cen 0
+cen 1
+cen 2
+cen 3
+cen 4 
+cen 5
+cen 6
+cen 7
+cen 8
+
+area 0 
+area 1
+area 2
+area 3
+area 4
+area 5
+area 6
+area 7
+area 8
+
+
+ars
+d 1 
+d 4 
+d 6
+ars
+
+
+
+exit

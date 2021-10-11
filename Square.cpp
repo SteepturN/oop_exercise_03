@@ -26,6 +26,6 @@ class Square : public Figure {
 				verteces[(i+1)%NUM_OF_VERTECES_OF_SQUARE].first	*	verteces[i].second;
 		}
 		area/=2;
-		return area>0?area:-area;
+		return area<0?-area:area;
 	}
 };

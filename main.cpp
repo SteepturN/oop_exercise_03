@@ -41,22 +41,23 @@ int main(){ // можно вынести названия команд как к
 	std::cout << a;
 	do {
 	beginning_of_the_entire_input:
-		bool exit = false;
+		bool exit_if_successful_input = false;
 		do{
 			read_return_t answer = get_command(valid_commands, command);
 			switch(answer) {
 				case END_OF_FILE: return 0;
 				case END_OF_LINE: continue;
-				case VALID_INPUT: exit = true; break;
+				case VALID_INPUT: exit_if_successful_input = true; break;
 				case INVALID_INPUT:
 					do ch=getchar(); while((ch != EOF) && (ch != '\n'));
 					std::cout << "wrong input" << std::endl;
 					if(ch == EOF) return 0;
 					else break;
 			}
-		} while(!exit);
-		if(static_cast<std::string>(command) == "exit") return 0;
-		if(static_cast<std::string>(command) == "p") {
+		} while(!exit_if_successful_input);
+		std::string&& command_string = static_cast<std::string>(command);
+		if(command_string == "exit") return 0;
+		if(command_string == "p") {
 			char type_of_figure[10];
 			read_return_t answer = get_command(valid_figures, type_of_figure);
 			switch(answer) {
@@ -69,15 +70,16 @@ int main(){ // можно вынести названия команд как к
 					if(ch == EOF) return 0;
 					else goto beginning_of_the_entire_input;
 			}
+			std::string&& figure_type_string = static_cast<std::string>(type_of_figure);
 			int num_of_verteces(0);
 			std::pair<double, double> vertex;
-			if(static_cast<std::string>(type_of_figure) == "t") {
+			if(figure_type_string == "t") {
 				num_of_verteces = 3; //можно лучше сделать - объявить константами
 				figures.push_back(new Triangle);
-			} else if(static_cast<std::string>(type_of_figure) == "s") {
+			} else if(figure_type_string == "s") {
 				num_of_verteces = 4;
 				figures.push_back(new Square);
-			} else if(static_cast<std::string>(type_of_figure) == "o") {
+			} else if(figure_type_string == "o") {
 				num_of_verteces = 8;
 				figures.push_back(new Octagon);
 			}
@@ -91,8 +93,10 @@ int main(){ // можно вынести названия команд как к
 				}
 				figures[figures.size()-1]->verteces.push_back(vertex);
 			}
-		} else if(static_cast<std::string>(command) == "ars") {
-			long area(0);
+			std::cout << "You've added " << figure_type_string << " with this verteces: ";
+			figures[figures.size()-1]->coordinates();
+		} else if(command_string == "ars") {
+			long double area(0);
 			for(long unsigned int i = 0; i< figures.size(); i++) area+=figures[i]->area();
 			std::cout << "the whole area is " << area;
 		} else {
@@ -102,19 +106,21 @@ int main(){ // можно вынести названия команд как к
 				std::cout << "wrong input" << std::endl;
 				if(ch == EOF) return 0;
 				else continue;
-			} else if(static_cast<std::string>(command) == "cen") {
+			} else if(command_string == "cen") {
 				auto center = figures[input_figure_number]->center();
-				std::cout << "x = " << center.first << ", y = " << center.second;
-			} else if(static_cast<std::string>(command) == "coor") {
+				std::cout << input_figure_number << " center is: x = " << center.first << ", y = " << center.second;
+			} else if(command_string == "coor") {
+				std::cout << input_figure_number << " coordinates are ";
 				figures[input_figure_number]->coordinates();
-			} else if(static_cast<std::string>(command) == "area") {
-				std::cout << "area = " << figures[input_figure_number]->area();
-			} else if(static_cast<std::string>(command) == "d") {
+			} else if(command_string == "area") {
+				std::cout << input_figure_number << " area is " << figures[input_figure_number]->area();
+			} else if(command_string == "d") {
 				figures.erase(figures.begin()+input_figure_number);
+				std::cout << "You've deleted figure #" << input_figure_number;
 			}
 		}
 		do ch = getchar(); while((ch != '\n') && (ch != EOF));
-		if((static_cast<std::string>(command) != "d") &&(static_cast<std::string>(command) != "p")) std::cout << std::endl;
+		std::cout << std::endl;
 		if(ch == EOF) return 0;
 	} while(true);
 	return 0;
