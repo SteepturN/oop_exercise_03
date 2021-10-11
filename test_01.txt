@@ -1,0 +1,10 @@
+p t 
+p t 
+p t
+p o
+p o
+p o
+p s
+p s
+p s
+
