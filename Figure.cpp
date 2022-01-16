@@ -1,6 +1,7 @@
-#include <utility>
 #ifndef __FIGURE__
 #define __FIGURE__
+#include <utility>
+#include <vector>
 class Figure {
 	public:
 	virtual std::pair<double, double> center() const noexcept = 0;
